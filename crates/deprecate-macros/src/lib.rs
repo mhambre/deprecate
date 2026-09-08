@@ -305,13 +305,29 @@ fn build_note(fields: &Fields) -> String {
     if let Some(reason) = fields.get("reason") {
         parts.push(reason.clone());
     }
-    if let Some(replacement) = fields.get("replacement") {
+    if let Some(recipe) = fields.get("migrate") {
+        parts.push(migration_hint(recipe));
+    } else if let Some(replacement) = fields.get("replacement") {
         parts.push(format!("use `{replacement}` instead"));
     }
     if let Some(remove) = fields.get("remove") {
         parts.push(format!("scheduled for removal in {remove}"));
     }
     parts.join("; ")
+}
+
+/// Renders a `migrate` recipe as a plain-English call rewrite for `note`.
+///
+/// This is a cosmetic text rendering for the compiler warning, not the
+/// substitution engine `cargo deprecate fix` uses; placeholders are shown by
+/// their bare parameter name (`$n` becomes `n`).
+fn migration_hint(recipe: &str) -> String {
+    let Some((pattern, replacement)) = recipe.split_once("=>") else {
+        return String::new();
+    };
+    let pattern = pattern.trim().replace('$', "");
+    let replacement = replacement.trim().replace('$', "");
+    format!("replace `{pattern}` with `{replacement}`")
 }
 
 /// Serializes fields into the hidden rustdoc metadata marker.

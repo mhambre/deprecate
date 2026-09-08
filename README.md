@@ -1,5 +1,11 @@
 # deprecate
 
+<p align="center">
+
+[![CI](https://github.com/mhambre/deprecate/actions/workflows/ci.yml/badge.svg)](https://github.com/mhambre/deprecate/actions/workflows/ci.yml)
+
+</p>
+
 Rust deprecation macros for identifiers and features with removal deadlines,
 replacement guidance, and migration recipes. Deprecate APIs and Cargo features,
 automate supported call migrations, and check lifecycle policy in CI.
@@ -17,6 +23,19 @@ automate supported call migrations, and check lifecycle policy in CI.
 pub fn new_client(url: Url) -> Client {
     value
 }
+```
+
+Calling `new_client` now produces a standard compiler warning for the user to either manually
+migrate, or user `cargo deprecate fix` to automatically rewrite the call to the new API:
+
+```text
+warning: use of deprecated function `new_client`: client construction is now configurable; replace `new_client(url)` with `Client::builder().url(url).build()`; scheduled for removal in 3.0.0
+  --> src/lib.rs:24:5
+   |
+24 |     new_client(url)
+   |     ^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
 ```
 
 The macro validates versions with the `semver` crate and requires `remove` to be
