@@ -1,14 +1,15 @@
 [package]
 name = "deprecate-macros"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 rust-version = "1.74"
+authors = ["Matthew Hambrecht <hambrechtmatt@gmail.com>"]
 description = "Procedural macros for the deprecate lifecycle toolkit"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/mhambre/deprecate"
 readme = "README.md"
-keywords = ["deprecation", "migration", "proc-macro"]
-categories = ["development-tools::procedural-macro-helpers"]
+keywords = ["deprecation", "migration", "proc-macro", "semver", "attributes"]
+categories = ["development-tools", "development-tools::procedural-macro-helpers"]
 
 [lib]
 proc-macro = true
