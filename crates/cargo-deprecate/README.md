@@ -4,7 +4,6 @@
 
 [![CI](https://github.com/mhambre/deprecate/actions/workflows/ci.yml/badge.svg)](https://github.com/mhambre/deprecate/actions/workflows/ci.yml)
 ![Crates.io Version](https://img.shields.io/crates/v/cargo-deprecate)
-![docs.rs](https://img.shields.io/docsrs/cargo-deprecate)
 
 </p>
 
