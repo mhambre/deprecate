@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: extractions/setup-just@v2
+      - run: just check
+
+  msrv:
+    name: Rust 1.74
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.74.0
+      - run: cargo test --workspace --all-targets
+
+  package:
+    name: Package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo package -p deprecate-macros --allow-dirty
+      - run: cargo package -p deprecate --allow-dirty --list
+      - run: cargo package -p cargo-deprecate --allow-dirty --list
