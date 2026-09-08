@@ -1,5 +1,13 @@
 # cargo-deprecate
 
+<p align="center">
+
+[![CI](https://github.com/mhambre/deprecate/actions/workflows/ci.yml/badge.svg)](https://github.com/mhambre/deprecate/actions/workflows/ci.yml)
+![Crates.io Version](https://img.shields.io/crates/v/cargo-deprecate)
+![docs.rs](https://img.shields.io/docsrs/cargo-deprecate)
+
+</p>
+
 Inventory structured Rust deprecations, enforce removal deadlines in CI, and
 apply supported call migrations from the `deprecate` annotation crate.
 
