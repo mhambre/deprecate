@@ -1,5 +1,13 @@
 # deprecate-macros
 
+<p align="center">
+
+[![CI](https://github.com/mhambre/deprecate/actions/workflows/ci.yml/badge.svg)](https://github.com/mhambre/deprecate/actions/workflows/ci.yml)
+![Crates.io Version](https://img.shields.io/crates/v/deprecate-macros)
+![docs.rs](https://img.shields.io/docsrs/deprecate-macros)
+
+</p>
+
 Procedural macro implementation for [`deprecate`](https://crates.io/crates/deprecate).
 
 Most users should depend on `deprecate`, which re-exports these macros. Install
