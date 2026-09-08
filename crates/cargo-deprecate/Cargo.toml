@@ -1,6 +1,6 @@
 [package]
 name = "cargo-deprecate"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 rust-version = "1.74"
 authors = ["Matthew Hambrecht <hambrechtmatt@gmail.com>"]
@@ -16,7 +16,7 @@ cargo_metadata = { version = "=0.19.0", default-features = false }
 # Keep cargo_metadata 0.19 compatible with the declared MSRV.
 cargo-platform = "=0.1.8"
 clap = { version = "=4.5.48", default-features = false, features = ["derive", "error-context", "help", "std", "usage"] }
-deprecate = { version = "1.0.0", path = "../..", features = ["serde"] }
+deprecate = { version = "1.0", path = "../..", features = ["serde"] }
 proc-macro2 = { version = "1.0", features = ["span-locations"] }
 semver = "1.0.28"
 serde = { version = "=1.0.228", features = ["derive"] }

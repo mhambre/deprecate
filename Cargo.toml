@@ -1,6 +1,6 @@
 [package]
 name = "deprecate"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 rust-version = "1.74"
 authors = ["Matthew Hambrecht <hambrechtmatt@gmail.com>"]
@@ -22,7 +22,7 @@ resolver = "2"
 path = "src/lib.rs"
 
 [dependencies]
-deprecate-macros = { version = "1.0.0", path = "crates/deprecate-macros" }
+deprecate-macros = { version = "1.0", path = "crates/deprecate-macros" }
 serde = { version = "=1.0.228", optional = true, features = ["derive"] }
 
 [features]
