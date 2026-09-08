@@ -1,14 +1,15 @@
 [package]
 name = "deprecate"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 rust-version = "1.74"
+authors = ["Matthew Hambrecht <hambrechtmatt@gmail.com>"]
 description = "Machine-readable Rust deprecations and automatic migrations"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/mhambre/deprecate"
 readme = "README.md"
-keywords = ["deprecation", "migration", "cargo", "refactoring"]
-categories = ["development-tools", "development-tools::cargo-plugins"]
+keywords = ["deprecation", "migration", "cargo", "refactoring", "semver"]
+categories = ["development-tools", "development-tools::cargo-plugins", "rust-patterns"]
 
 [package.metadata.docs.rs]
 all-features = true
@@ -21,7 +22,7 @@ resolver = "2"
 path = "src/lib.rs"
 
 [dependencies]
-deprecate-macros = { version = "0.1.0", path = "crates/deprecate-macros" }
+deprecate-macros = { version = "1.0.0", path = "crates/deprecate-macros" }
 serde = { version = "=1.0.228", optional = true, features = ["derive"] }
 
 [features]
