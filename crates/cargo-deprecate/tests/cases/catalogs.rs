@@ -1,5 +1,6 @@
 use super::MANIFEST;
 use crate::support::Project;
+use std::path::Path;
 
 /// A dependency cannot borrow recipes from another package's catalog.
 #[test]
@@ -243,11 +244,13 @@ pub fn only_b() {}
 "#,
         ),
     ]);
+    let a_catalog = Path::new("a").join("deprecations.json");
+    let b_catalog = Path::new("b").join("deprecations.json");
     project
         .cli(&["catalog"])
         .success()
-        .stdout("a/deprecations.json")
-        .stdout("b/deprecations.json");
+        .stdout(&a_catalog.display().to_string())
+        .stdout(&b_catalog.display().to_string());
     project
         .cli(&["diff", "--from", "a/deprecations.json"])
         .success()

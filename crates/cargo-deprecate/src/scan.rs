@@ -130,6 +130,9 @@ fn walk_sources(
         .collect();
     let mut visited = BTreeSet::new();
     while let Some((source, crate_root, mut ancestors)) = pending.pop() {
+        let crate_root = crate_root
+            .canonicalize()
+            .map_err(|error| format!("failed to resolve {}: {error}", crate_root.display()))?;
         let file = source
             .file
             .canonicalize()

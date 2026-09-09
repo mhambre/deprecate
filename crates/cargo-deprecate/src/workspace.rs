@@ -162,19 +162,27 @@ pub fn deprecated_spans(workspace: &Workspace) -> Result<Vec<DiagnosticSpan>, St
         if message.message.code.as_ref().map(|code| code.code.as_str()) != Some("deprecated") {
             continue;
         }
+        let crate_root = message.target.src_path.into_std_path_buf();
+        let crate_root = crate_root
+            .canonicalize()
+            .map_err(|error| format!("failed to resolve {}: {error}", crate_root.display()))?;
         for span in message.message.spans {
             if !span.is_primary || span.expansion.is_some() {
                 continue;
             }
             let file = PathBuf::from(span.file_name);
+            let file = if file.is_absolute() {
+                file
+            } else {
+                workspace.root.join(file)
+            };
+            let file = file
+                .canonicalize()
+                .map_err(|error| format!("failed to resolve {}: {error}", file.display()))?;
             spans.push(DiagnosticSpan {
-                crate_root: message.target.src_path.clone().into_std_path_buf(),
+                crate_root: crate_root.clone(),
                 package_id: message.package_id.to_string(),
-                file: if file.is_absolute() {
-                    file
-                } else {
-                    workspace.root.join(file)
-                },
+                file,
                 start: usize::try_from(span.byte_start)
                     .expect("rustc source offsets fit into usize"),
                 end: usize::try_from(span.byte_end).expect("rustc source offsets fit into usize"),

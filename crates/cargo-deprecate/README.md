@@ -3,6 +3,7 @@
 <p align="center">
 
 [![CI](https://github.com/mhambre/deprecate/actions/workflows/ci.yml/badge.svg)](https://github.com/mhambre/deprecate/actions/workflows/ci.yml)
+[![Platforms](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-blue)](https://github.com/mhambre/deprecate/actions/workflows/ci.yml)
 ![Crates.io Version](https://img.shields.io/crates/v/cargo-deprecate)
 
 </p>
