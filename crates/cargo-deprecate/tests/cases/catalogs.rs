@@ -244,13 +244,13 @@ pub fn only_b() {}
 "#,
         ),
     ]);
-    let a_catalog = Path::new("a/deprecations.json").display().to_string();
-    let b_catalog = Path::new("b/deprecations.json").display().to_string();
+    let a_catalog = Path::new("a").join("deprecations.json");
+    let b_catalog = Path::new("b").join("deprecations.json");
     project
         .cli(&["catalog"])
         .success()
-        .stdout(&a_catalog)
-        .stdout(&b_catalog);
+        .stdout(&a_catalog.display().to_string())
+        .stdout(&b_catalog.display().to_string());
     project
         .cli(&["diff", "--from", "a/deprecations.json"])
         .success()
