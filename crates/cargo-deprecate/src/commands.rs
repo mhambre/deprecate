@@ -293,7 +293,7 @@ fn write_catalog(output: Option<&Path>) -> Result<(), String> {
         let rendered = catalog::render(&package.name, &package.version, &entries)?;
         fs::write(&path, rendered)
             .map_err(|error| format!("failed to write {}: {error}", path.display()))?;
-        println!("wrote {}", path.display());
+        println!("wrote {}", relative_path(&workspace.root, &path));
     }
     Ok(())
 }
